@@ -228,5 +228,6 @@ for (int i = 0; i < 3; i++)
             }
         }
 ```
-具体代码见工程文件中Asserts/TicTacToe.cs
+具体代码见TicTacToe.cs
 
+运行方法：在Unity中将TicTacToe.cs代码挂载在空对象上即可运行游戏。
