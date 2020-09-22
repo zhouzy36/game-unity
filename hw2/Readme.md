@@ -6,7 +6,9 @@
 二者的联系：资源可以作为模板，实例化为具体的游戏对象，可以作为游戏对象中的属性。我们创建的游戏对象也可以存储为资源，例如：在Unity中，我们可以创建一个游戏对象，并把它保存为资源以供后续多次使用。
 ### 1.2 下载几个游戏案例，分别总结资源、对象组织的结构（指资源的目录组织结构与游戏对象树的层次结构）
 以unity hub提供的学习项目John Lemon's Haunted Jaunt:3D Beginner为例：
+
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw2/images/1.jpg)
+
 资源的目录通常包括Materials（材料）、Models（模型）、Scripts（脚本）、Textures（包括人物角色、场景、用户界面）等文件夹。还常常包括animation（动画）、Audio（音频文件）、Gizmos(好像是一个调试工具)。由此可见，资源常常按照文件类型来进行分类。
 
 ### 1.3 编写一个代码，使用 debug 语句来验证 MonoBehaviour 基本行为或事件触发的条件 
@@ -71,11 +73,17 @@ public class test : MonoBehaviour
 }
 ```
 我将该脚本挂载在一个cube上，下图是测试结果：
+
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw2/images/2.jpg)
+
 可以看到Awake和Start只出现一次，LateUpdate一定出现在Update后面，OnGUI也不定时出现。由于我调整了Fixed Timestep为3s，所以FixedUpdate没3s出现一次，具体如下图：
+
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw2/images/3.jpg)
+
 为了测试OnDisable和OnEnable，我注释了Update类的事件，并勾选activeSelf属性，测试结果如下：
+
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw2/images/4.jpg)
+
 在我不勾选时，触发OnDisable，选中时触发OnEnable。
 
 ### 1.4 查找脚本手册，了解 GameObject，Transform，Component 对象 
@@ -84,14 +92,18 @@ public class test : MonoBehaviour
 * Transform：对象的位置、旋转和缩放。
 * Component：附加到 GameObject 的所有内容的基本类。
 #### 1.4.2 描述下图中 table 对象（实体）的属性、table 的 Transform 的属性、 table 的部件 
+
 ![](https://pmlpml.gitee.io/game-unity/post/images/ch02/ch02-prefabs.png)
+
 table 的对象是 GameObject，第一个选择框是activeSelf属性，用于标识此游戏对象的本地活动状态；选择框右边是name属性，为该游戏对象的名称；isStatic指定游戏对象是否为静态；Layer标识该游戏对象所在的层；第三行的Prefab属性用于设置该对象的预设。
 
 table的Transform的属性包括三部分：Position表示游戏对象的位置坐标为（0，0，0）；Rotation表示旋转角度为（0，0，0）；Scale表示游戏对象的在X、Y、Z方向的拉伸程度分别为（1，1，1）。
 
 除上述部件外，table还有Cube（Mesh Filter）、Box Collider、Mesh Renderer等部件。Mesh是用于通过脚本创建或修改网格的类；Collider是所有碰撞体的基类，Box Collider表示盒体形状的原始碰撞体，center表示在该对象本地空间中测量的盒体中心，size表示在该对象本地空间中测量的盒体大小。
 #### 1.4.3 用 UML 图描述三者的关系
+
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw2/images/5.jpg)
+
 ### 1.5 资源预设（Prefabs）与 对象克隆 (clone) 
 * 预设有什么好处？
 
@@ -103,7 +115,9 @@ table的Transform的属性包括三部分：Position表示游戏对象的位置�
 
 * 制作 table 预制，写一段代码将 table 预制资源实例化成游戏对象。
 table预制：
+
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw2/images/6.jpg)
+
 实例化代码：
 ```C#
 public class prefabs : MonoBehaviour
@@ -127,7 +141,9 @@ public class prefabs : MonoBehaviour
 ## 2、编程实践，小游戏
 游戏内容：井字棋
 使用了IMGUI构建UI，游戏界面如下
+
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw2/images/7.jpg)
+
 代码关键部分:
 
 1. 检查胜利条件：我采用了比较愚蠢的方法，通过两个二重循环分别检查行、列；通过两个单重循环检查对角线是否满足胜利条件。
