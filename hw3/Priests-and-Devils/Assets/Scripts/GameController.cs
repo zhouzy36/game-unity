@@ -134,7 +134,7 @@ public class GameController : MonoBehaviour, ISceneController, IUserAction
 
     public void MoveCharacter(CharacterController Character)
     {
-        if (Boat.isMoving()) return; //船在移动
+        if (Boat.isMoving() || gui.flg != 0) return; //船在移动
         if (Character.on_boat) //在船上
         {
             bool isLeft = Character.character.transform.localPosition.x < 0 ? true : false;//判断乘客是否在左边
