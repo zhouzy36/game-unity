@@ -118,6 +118,7 @@ public class rotation : MonoBehaviour
 为了记录星体的运动轨迹，我为各个星体添加了Trail Renderer组件。其需要设置Material 才可显示所设置的颜色，可以根据需要更改轨迹的宽度值width。最终实现效果如下
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw3/images/solarsystem2.jpg)
 ## 2. 编程实践
+项目运行方法：将Priests-and-Devils的Asserts文件夹拖入Project窗口中，创建一个空对象，将GameController.cs代码拖入空对象中即可运行。
 ### 游戏规则
 > 
 Priests and Devils
@@ -164,6 +165,11 @@ public class Director : System.Object
 ```
 2. 场记（SceneController）：可以有多个，但是该游戏只有一个场景，所以只有一个场记。其职责大致如下：管理本次场景所有的游戏对象；响应外部输入事件；管理本场次的规则等。代码大致如下：
 ```C#
+public interface ISceneController
+{
+    void LoadResource(); //加载场景
+}
+
 public class GameController : MonoBehaviour, ISceneController, IUserAction
 {
     public BankController LeftBank;
@@ -181,7 +187,7 @@ public class GameController : MonoBehaviour, ISceneController, IUserAction
         gui = gameObject.AddComponent<UserGUI>() as UserGUI;
     }
     
-    //实现ISceneController和IUserAction中的接口
+    //实现ISceneController和IUserAction中的接口，具体代码见项目文件
     //可添加一些辅助函数
 }
 ```
@@ -198,6 +204,10 @@ public interface IUserAction
 #### MVC架构
 MVC架构把程序分为三个部分：
 * 模型（Model）：数据对象及关系。在该游戏中，我们需要制作的模型有：河岸（bank）、河水（river）、牧师（priest）、恶魔（devil）和船（boat），制作完毕后将其保存为预制。我们还需要预先在unity中布置好场景，并记录下他们在不同状态下的坐标，方便接下来使用。
+***加载预制体的方法***:使用Resources.Load函数：该函数要求预制体保存在Resources文件夹下。第一个参数为预制体的路径（注意：路径名使用正斜杠“/”），第二个参数为要返回的对象类型。在这里都为GameObject。但是该函数只是让我们用一个对象来保存我们加载好的预制体，该预制体还没有载入场景中，所以还要调用Instantiate函数进行实例化。下面代码是一个例子：该代码将boat预制体加载到场景内
+```C#
+Boat.boat = Object.Instantiate(Resources.Load("Prefabs/boat", typeof(GameObject)), new Vector3(1.2f, -0.9f, -3), Quaternion.identity) as GameObject;
+```
 * 控制器（Controller）：除了场景的主控制器（GameController），针对每一个 Model ，我实现了对应的Controller，用于控制对应游戏对象的运动：
 1. 河岸控制器（bankcontroller）：应该具备的属性：标识是左岸还是右岸，空位的信息。应该具备的函数：获取空位，根据坐标返回其在河岸上的第几个位置。代码如下：
 ```C#
@@ -280,7 +290,7 @@ public class BoatController
     }
 }
 ```
-3. 角色模型（CharacterController）：应具备属性：角色标识，是否在船上。应具备的函数：角色移动。具体代码如下：
+3. 角色控制器（CharacterController）：应具备属性：角色标识（是牧师还是魔鬼），是否在船上。应具备的函数：角色移动。具体代码如下：
 ```C#
 public class CharacterController
 {
@@ -430,4 +440,12 @@ public class Move : MonoBehaviour
     }
 }
 ```
+### 游戏效果
+![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw3/images/pad1.jpg)
+![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw3/images/pad2.jpg)
+### 待完善和改进的地方
+1. 增加倒计时功能；
+2. 对类的属性进行封装：在我写控制器的时候为了图方便，将许多属性都设置为了public，没有对其进行封装；
+3. 将预制件的加载和实例化放到控制器的构造函数中；
+4. 美化游戏对象。
 
