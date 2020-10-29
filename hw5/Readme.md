@@ -555,8 +555,8 @@ public class Scorer: MonoBehaviour
 ```
 ## 游戏效果
 开始界面：
-![]()
+![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw5/images/start.jpg)
 游戏中界面：
-![]()
+![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw5/images/gaming.jpg)
 游戏结束界面：
-![]()
+![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw5/images/over.jpg)
