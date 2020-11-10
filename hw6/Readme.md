@@ -326,7 +326,9 @@ if (GUI.Button(new Rect(Screen.width - 300, 0, 100, 50), mode))
 ### 运行效果
 使用PhysicalActionManager
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw6/images/physical.jpg)
+
 使用CCActionManager
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw6/images/kinematic.jpg)
+
 爆炸效果
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw6/images/explosion.jpg)
