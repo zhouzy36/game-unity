@@ -224,6 +224,8 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 一个关键的地方：物品跟随鼠标移动的过程中，鼠标一般是不会检测到它所经过的格子区域的，因为鼠标视线被物品挡住了。组件Canvas Group中有一个属性Blocks Raycasts，将它的值设置为false就可以让鼠标透过物品，看到物品下面的格子了，从而就可以实现格子的高亮显示了。
 ## 制作效果
 ![](https://raw.githubusercontent.com/ShunShunNeverGiveUp/game-unity/master/hw9/images/5.gif)
+
 ## 参考博客
 [UGUI 实现Inventory(背包系统)](https://blog.kinpzz.com/2016/05/21/unity3d-ugui-Inventory/)
+
 [利用UGUI制作的包裹系统（一）](http://www.manew.com/thread-39589-1-1.html)
